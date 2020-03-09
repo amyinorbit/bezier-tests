@@ -24,9 +24,6 @@ tb, rb, vb = bezier.refine(r, b, v, a, h, 10)
 
 fig = figure()
 ax = axes(projection='3d')
-
-u, v, w = sphere(6371e3)
-
 ax.plot3D(r[:,0], r[:,1], r[:,2])
 ax.plot3D(rb[:,0], rb[:,1], rb[:,2])
 show()
