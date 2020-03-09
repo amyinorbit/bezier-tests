@@ -3,4 +3,3 @@ import numpy as np
 
 Vec = np.array
 Accelerator = Callable[[Vec], Vec]
-Dim = 2
