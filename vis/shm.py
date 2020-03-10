@@ -9,7 +9,7 @@ DIM = 1
 h = 0.5
 k = 1.0
 m = 1.0
-num_periods = 3
+num_periods = 10
 omega = np.sqrt(k/m)
 period = 2 * np.pi / omega
 num_steps = int(num_periods * period / h) + 1
@@ -23,5 +23,7 @@ v[0,:] = 0
 t, b, a= bezier.verlet(r, v, h, accelerators.spring_mass(k, m, 0))
 tb, rb, vb = bezier.refine(r, b, v, a, h, sub_steps)
 
-plot(tb, rb)
-show()
+plot(tb/period, rb)
+ylabel(r'$x/\mathrm{m}$')
+xlabel(r'$t/\mathrm{period}$')
+savefig('shm.pdf')
