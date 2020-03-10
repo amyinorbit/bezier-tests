@@ -1,1 +1,1 @@
-__all__ = ["bezier", "types"]
+__all__ = ["bezier", "types", "vector"]
