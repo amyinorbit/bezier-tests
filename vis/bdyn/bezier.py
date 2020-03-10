@@ -8,6 +8,8 @@ def verlet(
     v: np.ndarray,
     step_size: float,
     accelerate: Accelerator) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Advance a physics simulation using the Verlet method
+    """
 
     step_count = r.shape[0]
     h = step_size
@@ -34,6 +36,8 @@ def refine(
     a: np.ndarray,
     step_size: float,
     sub_count: int) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Interpolate between points of a physics simulation using bezier curves
+    """
 
     h = step_size
     step_count = r.shape[0]
