@@ -4,21 +4,23 @@ import numpy as np
 from matplotlib.pyplot import *
 from mpl_toolkits import mplot3d
 
-DIM = 3
-
+DIM = 2
 h = 0.5
 num_steps = 5
+sub_steps = 10
 
 r = np.empty((num_steps, DIM))
 v = np.empty((num_steps, DIM))
-r[0,:] = [0, 0, 0]
-v[0,:] = [7, 5, 10]
+r[0,:] = [0, 0]
+v[0,:] = [7, 7]
 
-t, b, a = bezier.verlet(r, v, h, accelerators.const_gravity([0, 0, -9.81]))
-tb, rb, vb = bezier.refine(r, b, v, a, h, 10)
+t, b, a = bezier.verlet(r, v, h, accelerators.const_gravity([0, -9.81]))
+tb, rb, vb = bezier.refine(r, b, v, a, h, sub_steps)
 
-fig = figure()
-ax = axes(projection='3d')
-ax.plot3D(r[:,0], r[:,1], r[:,2])
-ax.plot3D(rb[:,0], rb[:,1], rb[:,2])
+
+plot(r[:,0], r[:,1], '+')
+plot(rb[:,0], rb[:,1], '-')
+
+xlabel('x')
+ylabel('y')
 show()

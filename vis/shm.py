@@ -13,6 +13,7 @@ num_periods = 3
 omega = np.sqrt(k/m)
 period = 2 * np.pi / omega
 num_steps = int(num_periods * period / h) + 1
+sub_steps = 10
 
 r = np.empty((num_steps, DIM))
 v = np.empty((num_steps, DIM))
@@ -20,7 +21,7 @@ r[0,:] = 1
 v[0,:] = 0
 
 t, b, a= bezier.verlet(r, v, h, accelerators.spring_mass(k, m, 0))
-tb, rb, vb = bezier.refine(r, b, v, a, h, 10)
+tb, rb, vb = bezier.refine(r, b, v, a, h, sub_steps)
 
 plot(tb, rb)
 show()

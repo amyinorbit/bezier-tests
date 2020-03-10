@@ -55,4 +55,8 @@ def refine(
             t0 = m / sub_count
             r_bezier[offset + m] = b0*(1-t0)**2 + 2*(1-t0)*t0*b1 + b2 * t0**2
             v_bezier[offset + m] = (1-t0)*v[n] + t0*v[n+1] # basic lerp
-    return t_bezier, r_bezier, v_bezier
+        r_bezier[offset + sub_count] = r[n+1]
+        v_bezier[offset + sub_count] = v[n+1]
+
+    IGNORE = - (sub_count - 1)
+    return t_bezier[:IGNORE], r_bezier[:IGNORE,:], v_bezier[:IGNORE,:]

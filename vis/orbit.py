@@ -5,12 +5,14 @@ from matplotlib.pyplot import *
 from mpl_toolkits import mplot3d
 
 DIM = 3
-
 h = 400
 num_steps = 15
-mu = 3.98e14
+sub_steps = 10
 
-r0 = 400 + 6371e3
+mu = 3.98e14
+r_e = 6371e3
+
+r0 = 400 + r_e
 v0 = np.sqrt(mu / r0)
 
 period = 2 * np.pi * np.sqrt(r0**3 / mu)
@@ -23,7 +25,7 @@ r[0,:] = [r0, 0, 0]
 v[0,:] = [0, np.sin(ang)*v0, np.cos(ang)*v0]
 
 t, b, a = bezier.verlet(r, v, h, accelerators.gravity(mu, [0, 0, 0]))
-tb, rb, vb = bezier.refine(r, b, v, a, h, 10)
+tb, rb, vb = bezier.refine(r, b, v, a, h, sub_steps)
 
 fig = figure()
 ax = axes(projection='3d')
